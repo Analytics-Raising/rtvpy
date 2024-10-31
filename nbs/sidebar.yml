@@ -1,0 +1,7 @@
+website:
+  sidebar:
+    contents:
+      - index.ipynb
+      - 00_installation.ipynb
+      - 01_setting_up_dotenv.ipynb
+      - 02_push_data_to_wandb.ipynb
