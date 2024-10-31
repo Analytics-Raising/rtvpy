@@ -5,5 +5,7 @@ d = { 'settings': { 'branch': 'main',
                 'doc_host': 'https://Analytics-Raising.github.io',
                 'git_url': 'https://github.com/Analytics-Raising/rtvpy',
                 'lib_path': 'rtvpy'},
-  'syms': { 'rtvpy.wandb_manager': { 'rtvpy.wandb_manager.pushDatasetToWandb': ( 'push_data_to_wandb.html#pushdatasettowandb',
+  'syms': { 'rtvpy.variable_decodings': { 'rtvpy.variable_decodings.getMeanings': ( 'getting_meanings.html#getmeanings',
+                                                                                    'rtvpy/variable_decodings.py')},
+            'rtvpy.wandb_manager': { 'rtvpy.wandb_manager.pushDatasetToWandb': ( 'push_data_to_wandb.html#pushdatasettowandb',
                                                                                  'rtvpy/wandb_manager.py')}}}
