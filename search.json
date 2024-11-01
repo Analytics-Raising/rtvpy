@@ -1,0 +1,182 @@
+[
+  {
+    "objectID": "04_manipulate.html",
+    "href": "04_manipulate.html",
+    "title": "Data Manipulation",
+    "section": "",
+    "text": "To set a specific row as header (column names), you can use the setRowAsHeader from manipulate as below\n\nimport pandas as pd\nfrom rtvpy.manipulate import setRowAsHeader\n\ndataset = pd.read_csv('2022_data_selected.csv')\ndataset = setRowAsHeader(df=dataset, row_num=0)\n\ndataset.columns\n\nIndex(['1.0', '6.0', '55.0', '1.0', '0.3265457238059978', '0', '0', '0', '0',\n       '1', '1', '0', '2.0', '0', '1.0', '1', '0', '97', '0', '0.0', '-99',\n       '0', '1', 'Struggling'],\n      dtype='object', name=0)",
+    "crumbs": [
+      "Data Manipulation"
+    ]
+  },
+  {
+    "objectID": "04_manipulate.html#set-specific-row-as-header",
+    "href": "04_manipulate.html#set-specific-row-as-header",
+    "title": "Data Manipulation",
+    "section": "",
+    "text": "To set a specific row as header (column names), you can use the setRowAsHeader from manipulate as below\n\nimport pandas as pd\nfrom rtvpy.manipulate import setRowAsHeader\n\ndataset = pd.read_csv('2022_data_selected.csv')\ndataset = setRowAsHeader(df=dataset, row_num=0)\n\ndataset.columns\n\nIndex(['1.0', '6.0', '55.0', '1.0', '0.3265457238059978', '0', '0', '0', '0',\n       '1', '1', '0', '2.0', '0', '1.0', '1', '0', '97', '0', '0.0', '-99',\n       '0', '1', 'Struggling'],\n      dtype='object', name=0)",
+    "crumbs": [
+      "Data Manipulation"
+    ]
+  },
+  {
+    "objectID": "00_installation.html",
+    "href": "00_installation.html",
+    "title": "Installing",
+    "section": "",
+    "text": "To install and start using your internal package rtvpy, here’s a quick setup guide.\n\nStep 1: Install rtvpy\nYou can install rtvpy from pypi.org by running:\npip install rtvpy\nAlternatively, if you have a local version you can navigate to the directory where rtvpy is located and run:\npip install /path/to/rtvpy\n\n\nStep 2: Verify Installation\nTo verify that rtvpy is correctly installed and accessible, try checking its version or listing its functions:\nprint(rtvpy.__version__)\nprint(dir(rtvpy))\n\n\nAdditional Tips\n\nDocumentation: Check any internal documentation for rtvpy if there are specific functions or examples provided.\nDependencies: Ensure that any dependencies required by rtvpy are also installed, which should be specified in rtvpy’s requirements.txt or setup.py.",
+    "crumbs": [
+      "Installing"
+    ]
+  },
+  {
+    "objectID": "02_1_downloading_from_wandb.html",
+    "href": "02_1_downloading_from_wandb.html",
+    "title": "Downloading from Weights and Biases",
+    "section": "",
+    "text": "To load a dataset from weights and biases, use the loadWandbArtifact from wandb_manager as illustrated below\n\nfrom rtvpy.wandb_manager import loadWandbArtifact\n\ndataset = loadWandbArtifact(artifact_name='2021_year2_set.csv')\ndataset.head(n=2)\n\nwandb:   1 of 1 files downloaded.  \n\n\n\n\n\n\n\n\n\nyear\nhhh_age\npre_cohort\npre_hhid\npre_village\npre_cluster\npre_parish\npre_subcounty\npre_district\nregion\n...\nMaterial_roof_dec\nMaterial_floor_dec\nFuel_source_cooking_dec\nCooking_tech_dec\nLighting_source_dec\nType_of_Toilet_Facility_dec\nBedding_type_adults_dec\nperennial_crops_grown_dec\nBusiness_type_dec\nsave_mode_dec\n\n\n\n\n0\n1\n75\n2021\nKAN-KAN-FER-K1768\nKangyeyo\nRutendere\nRutendere\nKayonza\nKanungu\nNaN\n...\n['Iron Sheets/Concrete/Tiles/Asbestos/Other']\n['Earth']\n['Firewood/Dung/Grass/Reeds']\n['Traditional Stone open Air']\n['Electricity/Solar']\n['Uncovered Pit Latrine / Covered Pit Latrine ...\n['Mattress']\n['Food Banana']\nNaN\n['No savings']\n\n\n1\n1\n32\n2021\nKAN-OMU-KAN-K4711\nOmurwambu\nKihanda\nKihanda\nKirima\nKanungu\nNaN\n...\n['Iron Sheets/Concrete/Tiles/Asbestos/Other']\n['Cement']\n['Firewood/Dung/Grass/Reeds']\n['Traditional Stone open Air']\n['Electricity/Solar']\n['Uncovered Pit Latrine / Covered Pit Latrine ...\n['Cloth', 'Bed frame', 'Mattress']\n['Food Banana', 'Alcohol Banana', 'Avocado']\nNaN\n['RTV VSLA (Cash round)']\n\n\n\n\n2 rows × 202 columns",
+    "crumbs": [
+      "Downloading from Weights and Biases"
+    ]
+  },
+  {
+    "objectID": "02_1_downloading_from_wandb.html#loading-datasets-to-memory",
+    "href": "02_1_downloading_from_wandb.html#loading-datasets-to-memory",
+    "title": "Downloading from Weights and Biases",
+    "section": "",
+    "text": "To load a dataset from weights and biases, use the loadWandbArtifact from wandb_manager as illustrated below\n\nfrom rtvpy.wandb_manager import loadWandbArtifact\n\ndataset = loadWandbArtifact(artifact_name='2021_year2_set.csv')\ndataset.head(n=2)\n\nwandb:   1 of 1 files downloaded.  \n\n\n\n\n\n\n\n\n\nyear\nhhh_age\npre_cohort\npre_hhid\npre_village\npre_cluster\npre_parish\npre_subcounty\npre_district\nregion\n...\nMaterial_roof_dec\nMaterial_floor_dec\nFuel_source_cooking_dec\nCooking_tech_dec\nLighting_source_dec\nType_of_Toilet_Facility_dec\nBedding_type_adults_dec\nperennial_crops_grown_dec\nBusiness_type_dec\nsave_mode_dec\n\n\n\n\n0\n1\n75\n2021\nKAN-KAN-FER-K1768\nKangyeyo\nRutendere\nRutendere\nKayonza\nKanungu\nNaN\n...\n['Iron Sheets/Concrete/Tiles/Asbestos/Other']\n['Earth']\n['Firewood/Dung/Grass/Reeds']\n['Traditional Stone open Air']\n['Electricity/Solar']\n['Uncovered Pit Latrine / Covered Pit Latrine ...\n['Mattress']\n['Food Banana']\nNaN\n['No savings']\n\n\n1\n1\n32\n2021\nKAN-OMU-KAN-K4711\nOmurwambu\nKihanda\nKihanda\nKirima\nKanungu\nNaN\n...\n['Iron Sheets/Concrete/Tiles/Asbestos/Other']\n['Cement']\n['Firewood/Dung/Grass/Reeds']\n['Traditional Stone open Air']\n['Electricity/Solar']\n['Uncovered Pit Latrine / Covered Pit Latrine ...\n['Cloth', 'Bed frame', 'Mattress']\n['Food Banana', 'Alcohol Banana', 'Avocado']\nNaN\n['RTV VSLA (Cash round)']\n\n\n\n\n2 rows × 202 columns",
+    "crumbs": [
+      "Downloading from Weights and Biases"
+    ]
+  },
+  {
+    "objectID": "02_1_downloading_from_wandb.html#downloading-datasets",
+    "href": "02_1_downloading_from_wandb.html#downloading-datasets",
+    "title": "Downloading from Weights and Biases",
+    "section": "Downloading datasets",
+    "text": "Downloading datasets\nThe example above does not store a copy of the dataset on your local machine, if you would like a copy stored on your local machine, you can specify the download parameter as showed\n\nfrom rtvpy.wandb_manager import loadWandbArtifact\n\ndataset = loadWandbArtifact(artifact_name='2021_year2_set.csv', download=True)\ndataset.head(n=2)\n\nwandb:   1 of 1 files downloaded.  \n\n\nartifacts/2021_year2_set.csv\n\n\n\n\n\n\n\n\n\nyear\nhhh_age\npre_cohort\npre_hhid\npre_village\npre_cluster\npre_parish\npre_subcounty\npre_district\nregion\n...\nMaterial_roof_dec\nMaterial_floor_dec\nFuel_source_cooking_dec\nCooking_tech_dec\nLighting_source_dec\nType_of_Toilet_Facility_dec\nBedding_type_adults_dec\nperennial_crops_grown_dec\nBusiness_type_dec\nsave_mode_dec\n\n\n\n\n0\n1\n75\n2021\nKAN-KAN-FER-K1768\nKangyeyo\nRutendere\nRutendere\nKayonza\nKanungu\nNaN\n...\n['Iron Sheets/Concrete/Tiles/Asbestos/Other']\n['Earth']\n['Firewood/Dung/Grass/Reeds']\n['Traditional Stone open Air']\n['Electricity/Solar']\n['Uncovered Pit Latrine / Covered Pit Latrine ...\n['Mattress']\n['Food Banana']\nNaN\n['No savings']\n\n\n1\n1\n32\n2021\nKAN-OMU-KAN-K4711\nOmurwambu\nKihanda\nKihanda\nKirima\nKanungu\nNaN\n...\n['Iron Sheets/Concrete/Tiles/Asbestos/Other']\n['Cement']\n['Firewood/Dung/Grass/Reeds']\n['Traditional Stone open Air']\n['Electricity/Solar']\n['Uncovered Pit Latrine / Covered Pit Latrine ...\n['Cloth', 'Bed frame', 'Mattress']\n['Food Banana', 'Alcohol Banana', 'Avocado']\nNaN\n['RTV VSLA (Cash round)']\n\n\n\n\n2 rows × 202 columns\n\n\n\nAs you can see, the path to the dataset will be specified at the bottom like “artifacts/2021_year2_set.csv”",
+    "crumbs": [
+      "Downloading from Weights and Biases"
+    ]
+  },
+  {
+    "objectID": "02_1_downloading_from_wandb.html#all-parameters",
+    "href": "02_1_downloading_from_wandb.html#all-parameters",
+    "title": "Downloading from Weights and Biases",
+    "section": "All parameters",
+    "text": "All parameters\nBelow is the list of all parameters that you can modify to get desired results\n\nentity (str): Your WandB username or team name.\nproject (str): The WandB project name.\nartifact_name (str): The name of the artifact to download.\nversion (str): The version of the artifact to download (default is ‘latest’).\ndownload_dir (str): The local directory to save the downloaded artifact (default is ‘artifacts’).\ndownload (bool): Whether to delete the downloaded artifacts folder after loading the data.",
+    "crumbs": [
+      "Downloading from Weights and Biases"
+    ]
+  },
+  {
+    "objectID": "02_2_uploading_to_wandb.html",
+    "href": "02_2_uploading_to_wandb.html",
+    "title": "Uploading from Weights and Biases",
+    "section": "",
+    "text": "To add your dataset to wandb, you need to have your wandb api key (like WANDB_API_KEY = wandb_api_key_value)set in a.env` file. Read here to know how. Then you can upload your dataset as below\n\nfrom rtvpy.wandb_manager import pushDatasetToWandb\n\npushDatasetToWandb(file_path='2022_data_selected.csv', \n            job_type='2022_dataset_for_testing',\n            artifact_type='dataset',\n            description='sample dataset for testing')",
+    "crumbs": [
+      "Uploading from Weights and Biases"
+    ]
+  },
+  {
+    "objectID": "03_getting_meanings.html",
+    "href": "03_getting_meanings.html",
+    "title": "Get variable decodings",
+    "section": "",
+    "text": "You can access all the variable names that were chosen via variable_encodings eg.\n\nfrom rtvpy import variable_decodings\n\nall_variables = variable_decodings.all_variable_names\n\nprint(all_variables)\n\n['year', 'hhh_age', 'pre_cohort', 'pre_hhid', 'pre_village', 'pre_cluster', 'pre_parish', 'pre_subcounty', 'pre_district', 'region', 'pre_district', 'GPS-Latitude', 'GPS-Longitude', 'hhh_marital_status', 'hhh_religion', 'hhh_educ_level', 'hhh_read_write', 'leadership_head', 'tot_hhmembers', 'house_rooms', 'Tenure_status_of_the_household', 'Material_walls', 'Material_roof', 'Material_floor', 'Fuel_source_cooking', 'Cooking_tech', 'Lighting_source', 'Type_of_Toilet_Facility', 'Every_Member_at_least_ONE_Pair_of_Shoes', 'Bedding_type_adults', 'health_status', 'Distance_travelled_one_way_OPD_treatment', 'Time_travel_one_way_trip_OPD_treatment_minutes', 'Average_Water_Consumed_Per_Day', 'Main_source_of_water_for_consumption', 'hh_water_collection_Minutes', 'water_distance_collect_water_round_trip', 'farm_implements_owned', 'bicycle_owned', 'solar_owned', 'radios_owned', 'phones_owned', 'cereals_week', 'cereals_days', 'tubers_week', 'tubers_days', 'fruits_week', 'fruits_days', 'vegetables_week', 'vegetables_days', 'meat_poultry_offals', 'meat_poultry_offals_days', 'fish_week', 'fish_days', 'sugar_week', 'sugar_days', 'eggs', 'eggs_days', 'milk_week', 'milk_days', 'pulses_week', 'pulses_days', 'expenditure_Fuel_lighting', 'expenditure_Utilities', 'expenditure_Phone_credit', 'expenditure_Transport', 'expenditure_washing_cleaning_products', 'expenditure_Rent_paid_homestead', 'expenditure_durable_products', 'expenditure_clothing_women', 'expenditure_clothing_men', 'expenditure_clothing_children_girls', 'expenditure_clothing_children_boys', 'expenditure_Medical_care', 'expenditure_Maintenance_house', 'expenditure_Improvements_home', 'expenditure_Household_items', 'expenditure_Gifts', 'expenditure_Recreation', 'Does_your_Household_own_any_Land', 'Type_of_land_ownership', 'Size_land_owned', 'Land_size_for_Crop_Agriculture_Acres', 'Land_size_for_Grazing_Livestock__Acres', 'Land_Not_used__Fallow_LandAcre', 'Land_Rented_out_for_income_Acres', 'Number_of_Seasons_rented_land_out', 'Season1_cropped', 'Season2_cropped', 'Improved_seed', 'Season_1', 'Season_1_1', 'Season_1_2', 'Season_1_3', 'Season_1_4', 'Season_1_5', 'Season_1_6', 'Season_1_7', 'Season_1_8', 'Season_1_9', 'Season_1_10', 'Season_1_11', 'Season_1_11', 'Season_1_12', 'Season_1_13', 'Season_1_14', 'Season_1_15', 'Season_1_97', 'season_1_cropping_mthd', 'season_1_intercrop_crops', 'Season_2', 'Season_2_1', 'Season_2_2', 'Season_2_3', 'Season_2_4', 'Season_2_5', 'Season_2_6', 'Season_2_7', 'Season_2_8', 'Season_2_9', 'Season_2_10', 'Season_2_11', 'Season_2_11', 'Season_2_12', 'Season_2_13', 'Season_2_14', 'Season_2_15', 'Season_2_97', 'season_2_cropping_mthd', 'season_2_intercrop_crops', 'perennial_cropping', 'perennial_crops_grown', 'Expenditure_farm', 'farming_inputs', 'business_number', 'Business_type', 'save_mode', 'save_mode_1', 'save_mode_2', 'save_mode_3', 'save_mode_4', 'save_mode_5', 'save_mode_6', 'save_mode_7', 'save_mode_97', 'save_mode_99', 'borrowed_past_12_months', 'latrine_present', 'tippy_tap_present', 'soap_ash_present', 'kitchen_present', 'bathroom_present', 'compound_clean', 'diskrack_present', 'non_bio_waste_mgt_present', 'non_bio_waste_mgt_method', 'composts_num', 'water_mgt_methods', 'hh_produce_lq_manure', 'hh_produce_organics', 'work_salaried', 'work_casual', 'remittances_r', 'Formal Employment (USD)', 'Personal Business & Self Employment (USD)', 'Casual Labour (USD)', 'Remittances & Gifts (USD)', 'Rent Income (Property & Land) USD', 'Season1 Crops Income (USD)', 'Season2 Crops Income (USD)', 'Seasonal Crops Income (USD)', 'Perenial Crops Income (USD)', 'Livestock Income (USD)', 'Season 1 Agriculture Value (USD)', 'Season 2 Agriculture Value (USD)', 'Seasonal  Agriculture Value (USD)', 'Perennial Agriculture Value (USD)', 'Agriculture Value (USD)', 'Livestock Income / Consumed (USD)', 'Livestock Asset Value (USD)', 'HH Income (USD)', ' HH Production (USD)', 'HH Income + Production (USD)', 'Program Value (USD)', 'Assets']",
+    "crumbs": [
+      "Get variable decodings"
+    ]
+  },
+  {
+    "objectID": "03_getting_meanings.html#see-all-variable-names",
+    "href": "03_getting_meanings.html#see-all-variable-names",
+    "title": "Get variable decodings",
+    "section": "",
+    "text": "You can access all the variable names that were chosen via variable_encodings eg.\n\nfrom rtvpy import variable_decodings\n\nall_variables = variable_decodings.all_variable_names\n\nprint(all_variables)\n\n['year', 'hhh_age', 'pre_cohort', 'pre_hhid', 'pre_village', 'pre_cluster', 'pre_parish', 'pre_subcounty', 'pre_district', 'region', 'pre_district', 'GPS-Latitude', 'GPS-Longitude', 'hhh_marital_status', 'hhh_religion', 'hhh_educ_level', 'hhh_read_write', 'leadership_head', 'tot_hhmembers', 'house_rooms', 'Tenure_status_of_the_household', 'Material_walls', 'Material_roof', 'Material_floor', 'Fuel_source_cooking', 'Cooking_tech', 'Lighting_source', 'Type_of_Toilet_Facility', 'Every_Member_at_least_ONE_Pair_of_Shoes', 'Bedding_type_adults', 'health_status', 'Distance_travelled_one_way_OPD_treatment', 'Time_travel_one_way_trip_OPD_treatment_minutes', 'Average_Water_Consumed_Per_Day', 'Main_source_of_water_for_consumption', 'hh_water_collection_Minutes', 'water_distance_collect_water_round_trip', 'farm_implements_owned', 'bicycle_owned', 'solar_owned', 'radios_owned', 'phones_owned', 'cereals_week', 'cereals_days', 'tubers_week', 'tubers_days', 'fruits_week', 'fruits_days', 'vegetables_week', 'vegetables_days', 'meat_poultry_offals', 'meat_poultry_offals_days', 'fish_week', 'fish_days', 'sugar_week', 'sugar_days', 'eggs', 'eggs_days', 'milk_week', 'milk_days', 'pulses_week', 'pulses_days', 'expenditure_Fuel_lighting', 'expenditure_Utilities', 'expenditure_Phone_credit', 'expenditure_Transport', 'expenditure_washing_cleaning_products', 'expenditure_Rent_paid_homestead', 'expenditure_durable_products', 'expenditure_clothing_women', 'expenditure_clothing_men', 'expenditure_clothing_children_girls', 'expenditure_clothing_children_boys', 'expenditure_Medical_care', 'expenditure_Maintenance_house', 'expenditure_Improvements_home', 'expenditure_Household_items', 'expenditure_Gifts', 'expenditure_Recreation', 'Does_your_Household_own_any_Land', 'Type_of_land_ownership', 'Size_land_owned', 'Land_size_for_Crop_Agriculture_Acres', 'Land_size_for_Grazing_Livestock__Acres', 'Land_Not_used__Fallow_LandAcre', 'Land_Rented_out_for_income_Acres', 'Number_of_Seasons_rented_land_out', 'Season1_cropped', 'Season2_cropped', 'Improved_seed', 'Season_1', 'Season_1_1', 'Season_1_2', 'Season_1_3', 'Season_1_4', 'Season_1_5', 'Season_1_6', 'Season_1_7', 'Season_1_8', 'Season_1_9', 'Season_1_10', 'Season_1_11', 'Season_1_11', 'Season_1_12', 'Season_1_13', 'Season_1_14', 'Season_1_15', 'Season_1_97', 'season_1_cropping_mthd', 'season_1_intercrop_crops', 'Season_2', 'Season_2_1', 'Season_2_2', 'Season_2_3', 'Season_2_4', 'Season_2_5', 'Season_2_6', 'Season_2_7', 'Season_2_8', 'Season_2_9', 'Season_2_10', 'Season_2_11', 'Season_2_11', 'Season_2_12', 'Season_2_13', 'Season_2_14', 'Season_2_15', 'Season_2_97', 'season_2_cropping_mthd', 'season_2_intercrop_crops', 'perennial_cropping', 'perennial_crops_grown', 'Expenditure_farm', 'farming_inputs', 'business_number', 'Business_type', 'save_mode', 'save_mode_1', 'save_mode_2', 'save_mode_3', 'save_mode_4', 'save_mode_5', 'save_mode_6', 'save_mode_7', 'save_mode_97', 'save_mode_99', 'borrowed_past_12_months', 'latrine_present', 'tippy_tap_present', 'soap_ash_present', 'kitchen_present', 'bathroom_present', 'compound_clean', 'diskrack_present', 'non_bio_waste_mgt_present', 'non_bio_waste_mgt_method', 'composts_num', 'water_mgt_methods', 'hh_produce_lq_manure', 'hh_produce_organics', 'work_salaried', 'work_casual', 'remittances_r', 'Formal Employment (USD)', 'Personal Business & Self Employment (USD)', 'Casual Labour (USD)', 'Remittances & Gifts (USD)', 'Rent Income (Property & Land) USD', 'Season1 Crops Income (USD)', 'Season2 Crops Income (USD)', 'Seasonal Crops Income (USD)', 'Perenial Crops Income (USD)', 'Livestock Income (USD)', 'Season 1 Agriculture Value (USD)', 'Season 2 Agriculture Value (USD)', 'Seasonal  Agriculture Value (USD)', 'Perennial Agriculture Value (USD)', 'Agriculture Value (USD)', 'Livestock Income / Consumed (USD)', 'Livestock Asset Value (USD)', 'HH Income (USD)', ' HH Production (USD)', 'HH Income + Production (USD)', 'Program Value (USD)', 'Assets']",
+    "crumbs": [
+      "Get variable decodings"
+    ]
+  },
+  {
+    "objectID": "03_getting_meanings.html#pick-modelling-varibles",
+    "href": "03_getting_meanings.html#pick-modelling-varibles",
+    "title": "Get variable decodings",
+    "section": "Pick Modelling Varibles",
+    "text": "Pick Modelling Varibles\nYou can automatically pick out these variables from your dataset as below. be created\n\n# import pandas as pd\n# from rtvpy.variable_decodings import pickAndAddColumns\n\n# dataset = pd.read_csv('2022_data_selected.csv')\n\n# dataset_selected = pickAndAddColumns(dataframe=dataset, variables=all_variables)\n\nIf a variable is not found in the dataset, an empty column will",
+    "crumbs": [
+      "Get variable decodings"
+    ]
+  },
+  {
+    "objectID": "03_getting_meanings.html#see-variable-decodings",
+    "href": "03_getting_meanings.html#see-variable-decodings",
+    "title": "Get variable decodings",
+    "section": "See Variable Decodings",
+    "text": "See Variable Decodings\nTo see varible decodings you can access them via variable_decodings\n\nfrom rtvpy import variable_decodings\n\n\nvariable_decodings.save_mode_codes\n\n({1: 'Bank Account',\n  2: 'Saving and Credit cooperatives (SACCO)',\n  3: 'A mobile Money accounts',\n  4: 'With a shopkeeper',\n  5: 'With family and friends',\n  6: 'At a safe place at home',\n  7: 'RTV VSLA (Cash round)',\n  8: 'Non RTV VSLA (Cash Round)',\n  9: 'Self Help Group',\n  99: 'No savings'},)",
+    "crumbs": [
+      "Get variable decodings"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "RTV pie is a new python package for automating internal data preprocessing for analysis and machine learning for Raising The Village",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html#rtv-pie",
+    "href": "index.html#rtv-pie",
+    "title": "Introduction",
+    "section": "",
+    "text": "RTV pie is a new python package for automating internal data preprocessing for analysis and machine learning for Raising The Village",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html#table-of-contents",
+    "href": "index.html#table-of-contents",
+    "title": "Introduction",
+    "section": "Table of Contents",
+    "text": "Table of Contents\n\nInstallation\nSetting up dotenv (.env)\nDownloading files(artifacts) to Weights and Biases (wandb)\nUploading files(artifacts) to Weights and Biases (wandb)\nGetting variable decordings\nManipulate datasets\n\nmore to follow …",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "setting_up_dotenv.html",
+    "href": "setting_up_dotenv.html",
+    "title": "Setting up dotenv",
+    "section": "",
+    "text": "Using dotenv is an excellent way to securely manage environment variables in your applications. Below is a quick guide on how to set it up.",
+    "crumbs": [
+      "Setting up dotenv"
+    ]
+  },
+  {
+    "objectID": "setting_up_dotenv.html#step-1-install-dotenv",
+    "href": "setting_up_dotenv.html#step-1-install-dotenv",
+    "title": "Setting up dotenv",
+    "section": "Step 1: Install dotenv",
+    "text": "Step 1: Install dotenv\nFirst, install the python-dotenv package. This package loads environment variables from a .env file into Python’s os.environ.\npip install python-dotenv",
+    "crumbs": [
+      "Setting up dotenv"
+    ]
+  },
+  {
+    "objectID": "setting_up_dotenv.html#step-2-create-a-.env-file",
+    "href": "setting_up_dotenv.html#step-2-create-a-.env-file",
+    "title": "Setting up dotenv",
+    "section": "Step 2: Create a .env file",
+    "text": "Step 2: Create a .env file\nCreate a file called .env in the root of your project directory. This file will store environment variables in KEY=VALUE format.\nExample .env file:\nSECRET_KEY=your_secret_key_here\nDATABASE_URL=postgres://user:password@localhost/dbname\nDEBUG=True\n\nStep 4: Use Environment Variables Securely\nTo avoid exposing sensitive data, add .env to your .gitignore file so that it is not tracked by version control.\nExample .gitignore entry:\n.env\n\n\nAdditional Tips\n\nDefault Values: You can provide default values if an environment variable is not found.\ndebug = os.getenv(\"DEBUG\", \"False\")  # Default to False if DEBUG is not set\nError Handling: Ensure your code can handle missing environment variables gracefully, especially in production environments.\n\nThat’s it! Now you’re set up to manage environment variables securely with dotenv.",
+    "crumbs": [
+      "Setting up dotenv"
+    ]
+  }
+]
