@@ -455,21 +455,29 @@ import pandas as pd
 import numpy as np
 
 # pick out columns in variables from dataframe, add as empty columns if missing
-def pickAndAddColumns(dataframe:pd.DataFrame=None, variables:list=None) -> pd.DataFrame:
-  """
-  Picks out columns in 'variables' from 'dataframe' and adds them as empty columns if missing.
+def pickAndAddColumns(dataframe: pd.DataFrame = None, variables: list = None) -> pd.DataFrame:
+    """
+    Picks out columns in 'variables' from 'dataframe' and adds them as empty columns if missing.
 
-  Args:
-    dataframe: Pandas DataFrame.
-    variables: List of column names to select.
+    Args:
+        dataframe: Pandas DataFrame.
+        variables: List of column names to select.
 
-  Returns:
-    Pandas DataFrame with selected columns, adding empty columns if missing.
-  """
-  if dataframe is None or variables is None: 
-    raise ValueError("dataframe and variables must be provided")
-  
-  for var in variables:
-    if var not in dataframe.columns:
-      dataframe[var] = np.nan  # Or some other default value, e.g., 0
-  return dataframe[variables]
+    Returns:
+        Pandas DataFrame with selected columns, adding empty columns if missing.
+    """
+    if dataframe is None or variables is None:
+        raise ValueError("dataframe and variables must be provided")
+
+    # Identify missing columns
+    missing_vars = [var for var in variables if var not in dataframe.columns]
+    
+    # Create a DataFrame for missing columns with NaN values
+    if missing_vars:
+        missing_df = pd.DataFrame({var: np.nan for var in missing_vars}, index=dataframe.index)
+        # Concatenate missing columns to the original dataframe
+        dataframe = pd.concat([dataframe, missing_df], axis=1)
+
+    # Return only the specified columns
+    return dataframe[variables]
+
