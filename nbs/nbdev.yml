@@ -2,8 +2,8 @@ project:
   output-dir: _docs
 
 website:
-  title: "rtvpy"
-  site-url: "https://Analytics-Raising.github.io/rtvpy"
+  title: "RTV Pie"
+  site-url: "https://Analytics-Raising.github.io/RTV Pie"
   description: "new python package for data preprocessing"
   repo-branch: main
-  repo-url: "https://github.com/Analytics-Raising/rtvpy"
+  repo-url: "https://github.com/Analytics-Raising/RTV Pie"

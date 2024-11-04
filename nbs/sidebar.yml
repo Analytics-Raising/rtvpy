@@ -5,6 +5,6 @@ website:
       - 00_installation.ipynb
       - 01_setting_up_dotenv.ipynb
       - 02_1_downloading_from_wandb.ipynb
-      - 02_2_pushing_to_wandb.ipynb
+      - 02_2_uploading_to_wandb.ipynb
       - 03_getting_meanings.ipynb
-      - 04_data_manipulate.ipynb
+      - 04_manipulate.ipynb
