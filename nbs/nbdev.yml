@@ -3,7 +3,7 @@ project:
 
 website:
   title: "RTV Pie"
-  site-url: "https://Analytics-Raising.github.io/RTV Pie"
+  site-url: "https://Analytics-Raising.github.io/rtvpy"
   description: "new python package for data preprocessing"
   repo-branch: main
-  repo-url: "https://github.com/Analytics-Raising/RTV Pie"
+  repo-url: "https://github.com/Analytics-Raising/rtvpy"

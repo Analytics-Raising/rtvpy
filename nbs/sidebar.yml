@@ -2,9 +2,14 @@ website:
   sidebar:
     contents:
       - index.ipynb
-      - 00_installation.ipynb
-      - 01_setting_up_dotenv.ipynb
-      - 02_1_downloading_from_wandb.ipynb
-      - 02_2_uploading_to_wandb.ipynb
-      - 03_getting_meanings.ipynb
-      - 04_manipulate.ipynb
+      - section: Tutorials
+        contents:
+          - Tutorials/00_installation.ipynb
+          - Tutorials/01_setting_up_dotenv.ipynb
+          - Tutorials/02_1_downloading_from_wandb.ipynb
+          - Tutorials/02_2_uploading_to_wandb.ipynb
+          - Tutorials/03_getting_meanings.ipynb
+          - Tutorials/04_manipulate.ipynb
+      - section: Wandb
+        contents:
+          - Wandb/wandb_manager.ipynb
