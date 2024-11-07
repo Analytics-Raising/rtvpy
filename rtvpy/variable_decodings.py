@@ -4,10 +4,166 @@
 __all__ = ['season_1_codes', 'season_2_codes', 'educ_level_codes', 'religion_codes', 'tenure_status_codes',
            'material_walls_codes', 'material_roof_codes', 'material_floor_codes', 'fuel_source_cooking_codes',
            'cooking_tech_codes', 'lighting_source_codes', 'toilet_facility_codes', 'bedding_type_adults_codes',
-           'perennial_crops_grown_codes', 'business_type_codes', 'save_mode_codes', 'all_variable_names', 'getMeanings',
-           'pickAndAddColumns']
+           'perennial_crops_grown_codes', 'business_type_codes', 'save_mode_codes', 'all_variable_names',
+           'get_column_groups', 'get_meanings', 'getMeanings', 'pick_and_add_columns']
 
 # %% ../nbs/Tutorials/03_getting_meanings.ipynb 2
+def get_column_groups() -> dict:
+    """Define and return column groups as a dictionary"""
+    return {
+        'demographic': [
+            'year', 'hhh_age', 'pre_cohort', 'pre_hhid', 'pre_village',
+            'pre_cluster', 'pre_parish', 'pre_subcounty', 'pre_district',
+            'region', 'pre_district', 'GPS-Latitude', 'GPS-Longitude',
+            'hhh_marital_status', 'hhh_religion', 'hhh_educ_level',
+            'hhh_read_write', 'leadership_head', 'tot_hhmembers',
+        ],
+        'ppi': [
+            'house_rooms', 'Tenure_status_of_the_household', 'Material_walls',
+            'Material_roof', 'Material_floor', 'Fuel_source_cooking',
+            'Cooking_tech', 'Lighting_source', 'Type_of_Toilet_Facility',
+            'Every_Member_at_least_ONE_Pair_of_Shoes', 'Bedding_type_adults',
+        ],
+        'health_access': [
+            'health_status', 'Distance_travelled_one_way_OPD_treatment',
+            'Time_travel_one_way_trip_OPD_treatment_minutes',
+        ],
+        'water_access': [
+            'Average_Water_Consumed_Per_Day', 'Main_source_of_water_for_consumption',
+            'hh_water_collection_Minutes', 'water_distance_collect_water_round_trip',
+        ],
+        'assets': [
+            'farm_implements_owned', 'bicycle_owned', 'solar_owned',
+            'radios_owned', 'phones_owned',
+        ],
+        'seven_day_spending': [
+            'cereals_week', 'cereals_days', 'tubers_week', 'tubers_days',
+            'fruits_week', 'fruits_days', 'vegetables_week', 'vegetables_days',
+            'meat_poultry_offals', 'meat_poultry_offals_days', 'fish_week',
+            'fish_days', 'sugar_week', 'sugar_days', 'eggs', 'eggs_days',
+            'milk_week', 'milk_days', 'pulses_week', 'pulses_days',
+        ],
+        'thirty_day_spending': [
+            'expenditure_Fuel_lighting', 'expenditure_Utilities',
+            'expenditure_Phone_credit', 'expenditure_Transport',
+            'expenditure_washing_cleaning_products', 'expenditure_Rent_paid_homestead',
+            'expenditure_durable_products',
+        ],
+        'year_spending': [
+            'expenditure_clothing_women', 'expenditure_clothing_men',
+            'expenditure_clothing_children_girls', 'expenditure_clothing_children_boys',
+            'expenditure_Medical_care', 'expenditure_Maintenance_house',
+            'expenditure_Improvements_home', 'expenditure_Household_items',
+            'expenditure_Gifts', 'expenditure_Recreation',
+        ],
+        'farming_spending': ['Expenditure_farm', 'farming_inputs'],
+        'land_ownership': [
+            'Does_your_Household_own_any_Land', 'Type_of_land_ownership',
+            'Size_land_owned', 'Land_size_for_Crop_Agriculture_Acres',
+            'Land_size_for_Grazing_Livestock__Acres', 'Land_Not_used__Fallow_LandAcre',
+            'Land_Rented_out_for_income_Acres', 'Number_of_Seasons_rented_land_out',
+        ],
+        'seasonal_agriculture': [
+            'Season1_cropped',
+            'Season2_cropped',
+            'Improved_seed',
+            'Season_1',
+            'Season_1_1',
+            'Season_1_2',
+            'Season_1_3','Season_1_4',
+            'Season_1_5',
+            'Season_1_6',
+            'Season_1_7',
+            'Season_1_8',
+            'Season_1_9',
+            'Season_1_10', 
+            'Season_1_11',
+            'Season_1_11',
+            'Season_1_12',
+            'Season_1_13',
+            'Season_1_14',
+            'Season_1_15',
+            'Season_1_97',
+            'season_1_cropping_mthd',
+            'season_1_intercrop_crops',
+            'Season_2',
+            'Season_2_1',
+            'Season_2_2',
+            'Season_2_3','Season_2_4',
+            'Season_2_5',
+            'Season_2_6',
+            'Season_2_7',
+            'Season_2_8',
+            'Season_2_9',
+            'Season_2_10', 
+            'Season_2_11',
+            'Season_2_11',
+            'Season_2_12',
+            'Season_2_13',
+            'Season_2_14',
+            'Season_2_15',
+            'Season_2_97',
+            'season_2_cropping_mthd',
+            'season_2_intercrop_crops',
+        ],
+        'perennial_cropping': ['perennial_cropping', 'perennial_crops_grown'],
+        'employment': ['work_salaried', 'work_casual'],
+        'remittances': ['remittances_r'],
+        'business': ['business_number', 'Business_type'],
+        'household_saving_borrowing': [
+            'save_mode', 'save_mode_1', 'save_mode_2', 'save_mode_3',
+            'save_mode_4', 'save_mode_5', 'save_mode_6', 'save_mode_7',
+            'save_mode_97', 'save_mode_99', 'borrowed_past_12_months',
+        ],
+        'standard_evaluations': [
+            'latrine_present', 'tippy_tap_present', 'soap_ash_present',
+            'kitchen_present', 'bathroom_present', 'compound_clean',
+            'diskrack_present', 'non_bio_waste_mgt_present',
+            'non_bio_waste_mgt_method', 'composts_num', 'water_mgt_methods',
+            'hh_produce_lq_manure', 'hh_produce_organics',
+        ],
+        'incomes': [
+            'Formal Employment (USD)', 'Personal Business & Self Employment (USD)',
+            'Casual Labour (USD)', 'Remittances & Gifts (USD)',
+            'Rent Income (Property & Land) USD', 'Season1 Crops Income (USD)',
+            'Season2 Crops Income (USD)', 'Seasonal Crops Income (USD)',
+            'Perenial Crops Income (USD)', 'Livestock Income (USD)',
+            'Season 1 Agriculture Value (USD)', 'Season 2 Agriculture Value (USD)',
+            'Seasonal  Agriculture Value (USD)', 'Perennial Agriculture Value (USD)',
+            'Agriculture Value (USD)', 'Livestock Income / Consumed (USD)',
+            'Livestock Asset Value (USD)', 'HH Income (USD)',
+            ' HH Production (USD)', 'HH Income + Production (USD)',
+            'Program Value (USD)', 'Assets'
+        ]
+    }
+
+
+# %% ../nbs/Tutorials/03_getting_meanings.ipynb 3
+import pandas as pd
+import numpy as np
+
+def get_meanings(df, columns_and_codes):
+    """
+    Parameters:
+    df: DataFrame
+    columns_and_codes: list of tuples, each containing (column_name, code_dictionary)
+    Example: [('bed_type', bed_codes), ('room_type', room_codes)]
+    """
+    results = {}
+    
+    for column_name, codes in columns_and_codes:
+        def process_row(row):
+            if pd.isna(row[column_name]):
+                return np.nan  
+            code_numbers = str(row[column_name]).strip().split()
+            return [codes[int(num)] for num in code_numbers if num.isdigit()]
+
+        
+        results[column_name] = df.apply(process_row, axis=1)
+    
+    return results
+
+# %% ../nbs/Tutorials/03_getting_meanings.ipynb 4
 # 2022_year1_2021_year2
 season_1_codes = {
     1: "Beans", 2: "Ground Nuts", 3: "Soya", 4: "Peas", 5: "Maize", 6: "Millet", 7: "Sorghum",
@@ -104,7 +260,7 @@ save_mode_codes = {
 },
 
 
-# %% ../nbs/Tutorials/03_getting_meanings.ipynb 3
+# %% ../nbs/Tutorials/03_getting_meanings.ipynb 5
 # 2023_year1_2022_year2
 
 season_1_codes = {
@@ -208,7 +364,7 @@ save_mode_codes = {
     7: "RTV VSLA (Cash Round)", 97: "Other VSLA", 99: "None"
 }
 
-# %% ../nbs/Tutorials/03_getting_meanings.ipynb 4
+# %% ../nbs/Tutorials/03_getting_meanings.ipynb 6
 all_variable_names = [
     # demographic
     'year',
@@ -425,7 +581,7 @@ all_variable_names = [
     'Assets'
 ]
 
-# %% ../nbs/Tutorials/03_getting_meanings.ipynb 5
+# %% ../nbs/Tutorials/03_getting_meanings.ipynb 7
 import pandas as pd
 import numpy as np
 
@@ -450,12 +606,12 @@ def getMeanings(df, columns_and_codes):
     
     return results
 
-# %% ../nbs/Tutorials/03_getting_meanings.ipynb 9
+# %% ../nbs/Tutorials/03_getting_meanings.ipynb 11
 import pandas as pd
 import numpy as np
 
 # pick out columns in variables from dataframe, add as empty columns if missing
-def pickAndAddColumns(dataframe: pd.DataFrame = None, variables: list = None) -> pd.DataFrame:
+def pick_and_add_columns(dataframe: pd.DataFrame = None, variables: list = None) -> pd.DataFrame:
     """
     Picks out columns in 'variables' from 'dataframe' and adds them as empty columns if missing.
 
