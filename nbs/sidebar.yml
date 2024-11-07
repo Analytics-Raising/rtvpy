@@ -8,6 +8,7 @@ website:
           - Tutorials/01_setting_up_dotenv.ipynb
           - Tutorials/02_1_loading_wandb_artifact.ipynb
           - Tutorials/02_2_pushing_wandb_artifact.ipynb
+          - Tutorials/03_getting_decodings.ipynb
           - Tutorials/04_manipulate.ipynb
           - Tutorials/05_missingness.ipynb
       - section: Wandb
