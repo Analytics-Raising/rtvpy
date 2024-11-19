@@ -2,16 +2,22 @@ website:
   sidebar:
     contents:
       - index.ipynb
-      - section: Tutorials
+      - section: 1.Tutorials
         contents:
-          - Tutorials/00_installation.ipynb
-          - Tutorials/01_setting_up_dotenv.ipynb
-          - Tutorials/02_1_loading_wandb_artifact.ipynb
-          - Tutorials/02_2_pushing_wandb_artifact.ipynb
-          - Tutorials/03_getting_decodings.ipynb
-          - Tutorials/04_manipulate.ipynb
-          - Tutorials/05_missingness.ipynb
-      - section: Wandb
+          - 1.Tutorials/00_installation.ipynb
+          - 1.Tutorials/01_setting_up_dotenv.ipynb
+          - 1.Tutorials/02_1_loading_wandb_artifact.ipynb
+          - 1.Tutorials/02_2_pushing_wandb_artifact.ipynb
+          - 1.Tutorials/03_getting_decodings.ipynb
+          - 1.Tutorials/04_manipulate.ipynb
+          - 1.Tutorials/05_missingness.ipynb
+      - section: 2.Wandb
         contents:
-          - Wandb/load_wandb_artifact.ipynb
-          - Wandb/push_wandb_artifact.ipynb
+          - 2.Wandb/load_wandb_artifact.ipynb
+          - 2.Wandb/push_wandb_artifact.ipynb
+      - section: 3.Variables-and-decodings
+        contents:
+          - 3.Variables-and-decodings/all_variable_names.ipynb
+      - section: 4.Manipulation
+        contents:
+          - 4.Manipulation/set_row_as_header.ipynb
