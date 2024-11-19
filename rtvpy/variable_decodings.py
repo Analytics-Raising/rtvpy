@@ -12,7 +12,7 @@ def get_column_groups() -> dict:
     """Define and return column groups as a dictionary"""
     return {
         'demographic': [
-            'year', 'hhh_age', 'pre_cohort', 'pre_hhid', 'pre_village',
+            'year', 'hhh_sex', 'hhh_age', 'pre_cohort', 'pre_hhid', 'pre_village',
             'pre_cluster', 'pre_parish', 'pre_subcounty', 'pre_district',
             'region', 'pre_district', 'GPS-Latitude', 'GPS-Longitude',
             'hhh_marital_status', 'hhh_religion', 'hhh_educ_level',
@@ -143,22 +143,25 @@ import pandas as pd
 import numpy as np
 
 def get_meanings(df, columns_and_codes):
-    """
-    Parameters:
-    df: DataFrame
-    columns_and_codes: list of tuples, each containing (column_name, code_dictionary)
-    Example: [('bed_type', bed_codes), ('room_type', room_codes)]
-    """
     results = {}
     
     for column_name, codes in columns_and_codes:
         def process_row(row):
-            if pd.isna(row[column_name]):
-                return np.nan  
-            code_numbers = str(row[column_name]).strip().split()
-            return [codes[int(num)] for num in code_numbers if num.isdigit()]
-
-        
+            value = row[column_name]
+            
+            if pd.isna(value):
+                return np.nan
+            
+            try:
+                if isinstance(value, (int, float)):
+                    return [codes[int(value)]]
+                
+                code_numbers = str(value).strip().split()
+                return [codes[int(num)] for num in code_numbers if num.isdigit()]
+                
+            except (ValueError, KeyError):
+                return np.nan
+            
         results[column_name] = df.apply(process_row, axis=1)
     
     return results
@@ -369,6 +372,7 @@ all_variable_names = [
     # demographic
     'year',
     'hhh_age',
+    'hhh_sex',
     'pre_cohort',
     'pre_hhid',
     'pre_village',

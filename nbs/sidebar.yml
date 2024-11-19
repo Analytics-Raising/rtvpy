@@ -13,4 +13,5 @@ website:
           - Tutorials/05_missingness.ipynb
       - section: Wandb
         contents:
-          - Wandb/wandb_manager.ipynb
+          - Wandb/load_wandb_artifact.ipynb
+          - Wandb/push_wandb_artifact.ipynb
