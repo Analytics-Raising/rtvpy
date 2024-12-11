@@ -1,0 +1,230 @@
+[
+  {
+    "objectID": "2.Wandb/push_wandb_artifact.html",
+    "href": "2.Wandb/push_wandb_artifact.html",
+    "title": "push_wandb_artifact",
+    "section": "",
+    "text": "Uploads a dataset to Weights & Biases as an artifact.\n\nimport os\nimport wandb\nimport pandas as pd\nfrom dotenv import load_dotenv\n\nload_dotenv()\n\ndef push_wandb_artifact(file_path: str, \n                      job_type: str, \n                      description: str = 'no description', \n                      artifact_type: str = 'dataset',\n                      project:str = \"Risk Assessment\",\n                      ) -&gt; None:\n    \"\"\"\n    Uploads a dataset to Weights & Biases as an artifact.\n\n    Args:\n        file_path (str): Path to the file to upload.\n        job_type (str): The type of job (e.g., \"training\", \"evaluation\").\n        description (str, optional): Description of the artifact. Defaults to 'no description'.\n        artifact_type (str, optional): Type of the artifact (e.g., \"dataset\"). Defaults to 'dataset'.\n        project (str, optional): Name of the Weights & Biases project. Defaults to \"Risk Assessment\".\n\n    Returns:\n        None\n    \n    Raises:\n        ValueError: If file_path or job_type are not provided.\n        ConnectionError: If there is an issue connecting to Weights & Biases.\n    \"\"\"\n    # Validate arguments\n    if not file_path:\n        raise ValueError(\"File path cannot be empty. Please provide a valid path to the data file.\")\n    if not job_type:\n        raise ValueError(\"Job type cannot be empty. Please provide a valid job type.\")\n\n    # Initialize Weights & Biases connection\n    try:\n        wandb.login(key=os.environ.get(\"WANDB_API_KEY\"))\n        wandb.init(project=project, job_type=job_type)\n    except wandb.errors.CommError as e:\n        raise ConnectionError(\"Failed to connect to Weights & Biases. Check your API key and internet connection.\") from e\n\n    # Create and log artifact\n    artifact = wandb.Artifact(\n        name=f\"{job_type}_{os.path.basename(file_path)}\",\n        type=artifact_type,\n        description=description,\n    )\n    artifact.add_file(file_path)\n\n    try:\n        wandb.log_artifact(artifact)\n    finally:\n        wandb.finish()",
+    "crumbs": [
+      "2.Wandb",
+      "push_wandb_artifact"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "RTV pie is a new python package for automating internal data preprocessing for analysis and machine learning for Raising The Village",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html#rtv-pie",
+    "href": "index.html#rtv-pie",
+    "title": "Introduction",
+    "section": "",
+    "text": "RTV pie is a new python package for automating internal data preprocessing for analysis and machine learning for Raising The Village",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "index.html#table-of-contents",
+    "href": "index.html#table-of-contents",
+    "title": "Introduction",
+    "section": "Table of Contents",
+    "text": "Table of Contents\n\nInstallation\nSetting up dotenv (.env)\nDownloading files(artifacts) to Weights and Biases (wandb)\nUploading files(artifacts) to Weights and Biases (wandb)\nGetting variable decordings\nManipulate datasets\nHeavy missingness\n\nmore to follow …",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "1.Tutorials/02_2_pushing_wandb_artifact.html",
+    "href": "1.Tutorials/02_2_pushing_wandb_artifact.html",
+    "title": "Uploading from Weights and Biases",
+    "section": "",
+    "text": "To add your dataset to wandb, you need to have your wandb api key (like WANDB_API_KEY = wandb_api_key_value)set in a.env` file. Read here to know how. Then you can upload your dataset as below\n\nfrom rtvpy.wandb_manager import push_wandb_artifact\n\npush_wandb_artifact(file_path='2022_data_selected.csv', \n            job_type='2022_dataset_for_testing',\n            artifact_type='dataset',\n            description='sample dataset for testing')\n\nwandb: Using wandb-core as the SDK backend. Please refer to https://wandb.me/wandb-core for more information.\nwandb: Currently logged in as: rtv (analytic). Use `wandb login --relogin` to force relogin\nwandb: WARNING If you're specifying your api key in code, ensure this code is not shared publicly.\nwandb: WARNING Consider setting the WANDB_API_KEY environment variable, or running `wandb login` from the command line.\nwandb: Appending key for api.wandb.ai to your netrc file: /home/jumashafara/.netrc\n\n\nTracking run with wandb version 0.18.5\n\n\nRun data is saved locally in /home/jumashafara/rtv/rtvpy/nbs/Tutorials/wandb/run-20241105_110936-y0eatq8r\n\n\nSyncing run valiant-pond-42 to Weights & Biases (docs)\n\n\n View project at https://wandb.ai/analytic/Risk%20Assessment\n\n\n View run at https://wandb.ai/analytic/Risk%20Assessment/runs/y0eatq8r\n\n\n View run valiant-pond-42 at: https://wandb.ai/analytic/Risk%20Assessment/runs/y0eatq8r View project at: https://wandb.ai/analytic/Risk%20AssessmentSynced 4 W&B file(s), 0 media file(s), 3 artifact file(s) and 0 other file(s)\n\n\nFind logs at: ./wandb/run-20241105_110936-y0eatq8r/logs",
+    "crumbs": [
+      "1.Tutorials",
+      "Uploading from Weights and Biases"
+    ]
+  },
+  {
+    "objectID": "1.Tutorials/setting_up_dotenv.html",
+    "href": "1.Tutorials/setting_up_dotenv.html",
+    "title": "Setting up dotenv",
+    "section": "",
+    "text": "Using dotenv is an excellent way to securely manage environment variables in your applications. Below is a quick guide on how to set it up.",
+    "crumbs": [
+      "1.Tutorials",
+      "Setting up dotenv"
+    ]
+  },
+  {
+    "objectID": "1.Tutorials/setting_up_dotenv.html#step-1-install-dotenv",
+    "href": "1.Tutorials/setting_up_dotenv.html#step-1-install-dotenv",
+    "title": "Setting up dotenv",
+    "section": "Step 1: Install dotenv",
+    "text": "Step 1: Install dotenv\nFirst, install the python-dotenv package. This package loads environment variables from a .env file into Python’s os.environ.\npip install python-dotenv",
+    "crumbs": [
+      "1.Tutorials",
+      "Setting up dotenv"
+    ]
+  },
+  {
+    "objectID": "1.Tutorials/setting_up_dotenv.html#step-2-create-a-.env-file",
+    "href": "1.Tutorials/setting_up_dotenv.html#step-2-create-a-.env-file",
+    "title": "Setting up dotenv",
+    "section": "Step 2: Create a .env file",
+    "text": "Step 2: Create a .env file\nCreate a file called .env in the root of your project directory. This file will store environment variables in KEY=VALUE format.\nExample .env file:\nSECRET_KEY=your_secret_key_here\nDATABASE_URL=postgres://user:password@localhost/dbname\nDEBUG=True\n\nStep 4: Use Environment Variables Securely\nTo avoid exposing sensitive data, add .env to your .gitignore file so that it is not tracked by version control.\nExample .gitignore entry:\n.env\n\n\nAdditional Tips\n\nDefault Values: You can provide default values if an environment variable is not found.\ndebug = os.getenv(\"DEBUG\", \"False\")  # Default to False if DEBUG is not set\nError Handling: Ensure your code can handle missing environment variables gracefully, especially in production environments.\n\nThat’s it! Now you’re set up to manage environment variables securely with dotenv.",
+    "crumbs": [
+      "1.Tutorials",
+      "Setting up dotenv"
+    ]
+  },
+  {
+    "objectID": "1.Tutorials/05_missingness.html",
+    "href": "1.Tutorials/05_missingness.html",
+    "title": "RTV Pie",
+    "section": "",
+    "text": "import pandas as pd",
+    "crumbs": [
+      "1.Tutorials",
+      "05_missingness.html"
+    ]
+  },
+  {
+    "objectID": "3.Variables-and-decodings/all_variable_names.html",
+    "href": "3.Variables-and-decodings/all_variable_names.html",
+    "title": "all_variable_names",
+    "section": "",
+    "text": "This returns the list of variables being tracked for risk assessment\n\nall_variable_names = [\n    # demographic\n    'year',\n    'hhh_age',\n    'hhh_sex',\n    'pre_cohort',\n    'pre_hhid',\n    'pre_village',\n    'pre_cluster',\n    'pre_parish',\n    'pre_subcounty',\n    'pre_district',\n    'region',\n    'pre_district',\n    'GPS-Latitude',\n    'GPS-Longitude',\n    'hhh_marital_status',\n    'hhh_religion',\n    'hhh_educ_level',\n    'hhh_read_write',\n    'leadership_head',\n    'tot_hhmembers',\n\n    # ppi\n    'house_rooms',\n    'Tenure_status_of_the_household',\n    'Material_walls',\n    'Material_roof',\n    'Material_floor',\n    'Fuel_source_cooking',\n    'Cooking_tech',\n    'Lighting_source',\n    'Type_of_Toilet_Facility',\n    'Every_Member_at_least_ONE_Pair_of_Shoes',\n    'Bedding_type_adults',\n\n    # access to health\n    'health_status',\n    'Distance_travelled_one_way_OPD_treatment',\n    'Time_travel_one_way_trip_OPD_treatment_minutes',\n\n    # access to water\n    'Average_Water_Consumed_Per_Day',\n    'Main_source_of_water_for_consumption',\n    'hh_water_collection_Minutes',\n    'water_distance_collect_water_round_trip',\n\n    # assets\n    'farm_implements_owned',\n    'bicycle_owned',\n    'solar_owned',\n    'radios_owned',\n    'phones_owned',\n\n    # spending in the last seven days\n    'cereals_week',\n    'cereals_days',\n    'tubers_week',\n    'tubers_days',\n    'fruits_week',\n    'fruits_days',\n    'vegetables_week',\n    'vegetables_days',\n    'meat_poultry_offals',\n    'meat_poultry_offals_days',\n    'fish_week',\n    'fish_days',\n    'sugar_week',\n    'sugar_days',\n    'eggs',\n    'eggs_days',\n    'milk_week',\n    'milk_days',\n    'pulses_week',\n    'pulses_days',\n\n    # spending in the last 30 days\n    'expenditure_Fuel_lighting',\n    'expenditure_Utilities',\n    'expenditure_Phone_credit',\n    'expenditure_Transport',\n    'expenditure_washing_cleaning_products',\n    'expenditure_Rent_paid_homestead',\n    'expenditure_durable_products',\n\n    # spending the last 12 months\n    'expenditure_clothing_women',\n    'expenditure_clothing_men',\n    'expenditure_clothing_children_girls',\n    'expenditure_clothing_children_boys',\n    'expenditure_Medical_care',\n    'expenditure_Maintenance_house',\n    'expenditure_Improvements_home',\n    'expenditure_Household_items',\n    'expenditure_Gifts',\n    'expenditure_Recreation',\n\n    # land ownership\n    'Does_your_Household_own_any_Land',\n    'Type_of_land_ownership',\n    'Size_land_owned',   'Land_size_for_Crop_Agriculture_Acres',\n    'Land_size_for_Grazing_Livestock__Acres',\n    'Land_Not_used__Fallow_LandAcre',\n    'Land_Rented_out_for_income_Acres',\n    'Number_of_Seasons_rented_land_out',\n\n    # Seasonal\n    'Season1_cropped',\n    'Season2_cropped',\n    'Improved_seed',\n    'Season_1',\n    'Season_1_1',\n    'Season_1_2',\n    'Season_1_3','Season_1_4',\n    'Season_1_5',\n    'Season_1_6',\n    'Season_1_7',\n    'Season_1_8',\n    'Season_1_9',\n    'Season_1_10', \n    'Season_1_11',\n    'Season_1_11',\n    'Season_1_12',\n    'Season_1_13',\n    'Season_1_14',\n    'Season_1_15',\n    'Season_1_97',\n    'season_1_cropping_mthd',\n    'season_1_intercrop_crops',\n    'Season_2',\n    'Season_2_1',\n    'Season_2_2',\n    'Season_2_3','Season_2_4',\n    'Season_2_5',\n    'Season_2_6',\n    'Season_2_7',\n    'Season_2_8',\n    'Season_2_9',\n    'Season_2_10', \n    'Season_2_11',\n    'Season_2_11',\n    'Season_2_12',\n    'Season_2_13',\n    'Season_2_14',\n    'Season_2_15',\n    'Season_2_97',\n    'season_2_cropping_mthd',\n    'season_2_intercrop_crops',\n\n    # Perennial Cropping\n    'perennial_cropping',\n    'perennial_crops_grown',\n\n    # Expenditure on farming inputs\n    'Expenditure_farm',\n    'farming_inputs',\n\n    # business\n    'business_number',\n    'Business_type', \n\n    # household saving and borrowing\n    'save_mode',\n    'save_mode_1',\n    'save_mode_2',\n    'save_mode_3',\n    'save_mode_4',\n    'save_mode_5',\n    'save_mode_6',\n    'save_mode_7',\n    'save_mode_97',\n    'save_mode_99',\n    'borrowed_past_12_months',\n\n    # standard evaluations\n    'latrine_present',\n    'tippy_tap_present',\n    'soap_ash_present',\n    'kitchen_present',\n    'bathroom_present',\n    'compound_clean',\n    'diskrack_present',\n    'non_bio_waste_mgt_present',\n    'non_bio_waste_mgt_method',\n    'composts_num',\n    'water_mgt_methods',\n    'hh_produce_lq_manure',\n    'hh_produce_organics',\n\n    'work_salaried',\n    'work_casual',\n    'remittances_r',\n\n  # income variables    \n    'Formal Employment (USD)',   \n    'Personal Business & Self Employment (USD)',   \n    'Casual Labour (USD)',     'Remittances & Gifts (USD)',     \n    'Rent Income (Property & Land) USD',     \n    'Season1 Crops Income (USD)',    \n    'Season2 Crops Income (USD)',   \n    'Seasonal Crops Income (USD)',     \n    'Perenial Crops Income (USD)',   \n    'Livestock Income (USD)',  \n    'Season 1 Agriculture Value (USD)',   \n    'Season 2 Agriculture Value (USD)',    \n    'Seasonal  Agriculture Value (USD)',    \n    'Perennial Agriculture Value (USD)',    \n    'Agriculture Value (USD)',  \n    'Livestock Income / Consumed (USD)',  \n    'Livestock Asset Value (USD)',    \n    'HH Income (USD)',  \n    ' HH Production (USD)',   \n    'HH Income + Production (USD)',    \n    'Program Value (USD)',\n    'Assets'\n]",
+    "crumbs": [
+      "3.Variables-and-decodings",
+      "all_variable_names"
+    ]
+  },
+  {
+    "objectID": "4.Manipulation/set_row_as_header.html",
+    "href": "4.Manipulation/set_row_as_header.html",
+    "title": "set_row_as_header",
+    "section": "",
+    "text": "import pandas as pd\n\ndef set_row_as_header(df:pd.DataFrame=None, row_num:int=None) -&gt; pd.DataFrame:\n    \"\"\"\n    Set the specified row as column names for the given DataFrame\n    \"\"\"\n\n    if row_num is None or df is None:\n        raise ValueError(\"df and row_num must be an provided\")\n    \n    new_header = df.iloc[row_num]  \n    df = df[row_num + 1:]  \n    df.columns = new_header  \n\n    # set header as strings\n    df.columns = df.columns.astype(str)    \n    \n    return df",
+    "crumbs": [
+      "4.Manipulation",
+      "set_row_as_header"
+    ]
+  },
+  {
+    "objectID": "3.Variables-and-decodings/create_region_district_mapping.html",
+    "href": "3.Variables-and-decodings/create_region_district_mapping.html",
+    "title": "create_region_district_mapping",
+    "section": "",
+    "text": "import pandas as pd\n\ndef create_region_district_mapping():\n    \"\"\"\n    Creates a dictionary mapping districts to their respective regions\n    Including explicit entries for GAC and Standard variants\n    All district keys are in lowercase for consistent matching\n    \"\"\"\n    mapping = {\n        # South West Region\n        'mitooma': 'South_West',\n        'rubanda': 'South_West',\n        'kanungu': 'South_West',\n        'rukungiri': 'South_West',\n        'rubirizi': 'South_West',\n        'rukiga': 'South_West',\n        \n        # Mid West Region\n        'kagadi': 'Mid_West',\n        'kagadi - gac': 'Mid_West',\n        'kagadi - standard': 'Mid_West',\n        'kagadi_gac': 'Mid_West',\n        'kagadi_standard': 'Mid_West',\n        'kyenjojo': 'Mid_West',\n        'kyenjojo - gac': 'Mid_West',\n        'kyenjojo - standard': 'Mid_West',\n        'kibaale': 'Mid_West',\n        'kiryandongo': 'Mid_West',\n        \n        # Eastern Region\n        'kaliro': 'Eastern',\n        'luuka': 'Eastern'\n    }\n    return mapping",
+    "crumbs": [
+      "3.Variables-and-decodings",
+      "create_region_district_mapping"
+    ]
+  },
+  {
+    "objectID": "1.Tutorials/04_manipulate.html",
+    "href": "1.Tutorials/04_manipulate.html",
+    "title": "Data Manipulation",
+    "section": "",
+    "text": "To set a specific row as header (column names), you can use the setRowAsHeader from manipulate as below\n\nimport pandas as pd\nfrom rtvpy.manipulate import set_row_as_header\n\ndataset = pd.read_csv('2022_data_selected.csv')\ndataset = set_row_as_header(df=dataset, row_num=0)\n\ndataset.columns\n\nIndex(['1.0', '6.0', '55.0', '1.0', '0.3265457238059978', '0', '0', '0', '0',\n       '1', '1', '0', '2.0', '0', '1.0', '1', '0', '97', '0', '0.0', '-99',\n       '0', '1', 'Struggling'],\n      dtype='object', name=0)",
+    "crumbs": [
+      "1.Tutorials",
+      "Data Manipulation"
+    ]
+  },
+  {
+    "objectID": "1.Tutorials/04_manipulate.html#set-specific-row-as-header",
+    "href": "1.Tutorials/04_manipulate.html#set-specific-row-as-header",
+    "title": "Data Manipulation",
+    "section": "",
+    "text": "To set a specific row as header (column names), you can use the setRowAsHeader from manipulate as below\n\nimport pandas as pd\nfrom rtvpy.manipulate import set_row_as_header\n\ndataset = pd.read_csv('2022_data_selected.csv')\ndataset = set_row_as_header(df=dataset, row_num=0)\n\ndataset.columns\n\nIndex(['1.0', '6.0', '55.0', '1.0', '0.3265457238059978', '0', '0', '0', '0',\n       '1', '1', '0', '2.0', '0', '1.0', '1', '0', '97', '0', '0.0', '-99',\n       '0', '1', 'Struggling'],\n      dtype='object', name=0)",
+    "crumbs": [
+      "1.Tutorials",
+      "Data Manipulation"
+    ]
+  },
+  {
+    "objectID": "1.Tutorials/02_1_loading_wandb_artifact.html",
+    "href": "1.Tutorials/02_1_loading_wandb_artifact.html",
+    "title": "Loading from Weights and Biases",
+    "section": "",
+    "text": "You can automatically load a dataset from our wandb artifacts by using the code load_wandb_artifact from rtvpy as illustrated below\n\nfrom rtvpy import load_wandb_artifact\n\ndataset = load_wandb_artifact(\n    artifact_name='2021_year2_set.csv')\n\ndataset.head(n=2)",
+    "crumbs": [
+      "1.Tutorials",
+      "Loading from Weights and Biases"
+    ]
+  },
+  {
+    "objectID": "1.Tutorials/02_1_loading_wandb_artifact.html#loading-a-dataset-from-wandb",
+    "href": "1.Tutorials/02_1_loading_wandb_artifact.html#loading-a-dataset-from-wandb",
+    "title": "Loading from Weights and Biases",
+    "section": "",
+    "text": "You can automatically load a dataset from our wandb artifacts by using the code load_wandb_artifact from rtvpy as illustrated below\n\nfrom rtvpy import load_wandb_artifact\n\ndataset = load_wandb_artifact(\n    artifact_name='2021_year2_set.csv')\n\ndataset.head(n=2)",
+    "crumbs": [
+      "1.Tutorials",
+      "Loading from Weights and Biases"
+    ]
+  },
+  {
+    "objectID": "1.Tutorials/02_1_loading_wandb_artifact.html#downloading-datasets",
+    "href": "1.Tutorials/02_1_loading_wandb_artifact.html#downloading-datasets",
+    "title": "Loading from Weights and Biases",
+    "section": "Downloading datasets",
+    "text": "Downloading datasets\nThe example above does not store a copy of the dataset on your local machine, if you would like a copy stored on your local machine, you can specify the download parameter as showed\n\nfrom rtvpy import load_wandb_artifact\n\ndataset = load_wandb_artifact(\n    artifact_name='2021_year2_set.csv', \n    download=True)\n\ndataset.head(n=2)",
+    "crumbs": [
+      "1.Tutorials",
+      "Loading from Weights and Biases"
+    ]
+  },
+  {
+    "objectID": "1.Tutorials/02_1_loading_wandb_artifact.html#download-from-other-accounts-orand-projects",
+    "href": "1.Tutorials/02_1_loading_wandb_artifact.html#download-from-other-accounts-orand-projects",
+    "title": "Loading from Weights and Biases",
+    "section": "(down)Load from other accounts or/and projects",
+    "text": "(down)Load from other accounts or/and projects\nThe code snippets above automatically attempt to load/download the datasets from the ‘Risk Assessment’ project of the ‘analytics’ team. If you would like to access a dataset from a difference team or/and project, you can set entity and project parameters of the load_wandb_artifact() function as showed below\n\nfrom rtvpy.wandb_manager import load_wandb_artifact\n\ndataset = load_wandb_artifact(\n    entity='analytic',\n    project='Risk Assessment',\n    artifact_name='2021_year2_set.csv', \n    download=True)\n\ndataset.head(n=2)",
+    "crumbs": [
+      "1.Tutorials",
+      "Loading from Weights and Biases"
+    ]
+  },
+  {
+    "objectID": "1.Tutorials/02_1_loading_wandb_artifact.html#all-parameters",
+    "href": "1.Tutorials/02_1_loading_wandb_artifact.html#all-parameters",
+    "title": "Loading from Weights and Biases",
+    "section": "All parameters",
+    "text": "All parameters\nBelow is the list of all parameters that you can modify to get desired results\n\nentity (str): Your WandB username or team name.\nproject (str): The WandB project name.\nartifact_name (str): The name of the artifact to download.\nversion (str): The version of the artifact to download (default is ‘latest’).\ndownload_dir (str): The local directory to save the downloaded artifact (default is ‘artifacts’).\ndownload (bool): Whether to delete the downloaded artifacts folder after loading the data.",
+    "crumbs": [
+      "1.Tutorials",
+      "Loading from Weights and Biases"
+    ]
+  },
+  {
+    "objectID": "1.Tutorials/00_installation.html",
+    "href": "1.Tutorials/00_installation.html",
+    "title": "Installing",
+    "section": "",
+    "text": "To install and start using your internal package rtvpy, here’s a quick setup guide.\n\nStep 1: Install rtvpy\nYou can install rtvpy from pypi.org by running:\npip install rtvpy\nAlternatively, if you have a local version you can navigate to the directory where rtvpy is located and run:\npip install /path/to/rtvpy\n\n\nStep 2: Verify Installation\nTo verify that rtvpy is correctly installed and accessible, try checking its version or listing its functions:\nprint(rtvpy.__version__)\nprint(dir(rtvpy))\n\n\nAdditional Tips\n\nDocumentation: Check any internal documentation for rtvpy if there are specific functions or examples provided.\nDependencies: Ensure that any dependencies required by rtvpy are also installed, which should be specified in rtvpy’s requirements.txt or setup.py.",
+    "crumbs": [
+      "1.Tutorials",
+      "Installing"
+    ]
+  },
+  {
+    "objectID": "2.Wandb/load_wandb_artifact.html",
+    "href": "2.Wandb/load_wandb_artifact.html",
+    "title": "load_wandb_artifact",
+    "section": "",
+    "text": "import wandb\nimport pandas as pd\nimport os\nimport shutil\n\ndef load_wandb_artifact(\n        artifact_name: str = None, \n        entity: str = 'analytic',\n        project: str = 'Risk Assessment', \n        version: str = \"latest\", \n        dataset:bool=True,\n        download_dir: str = \"artifacts\", \n        download: bool = False) -&gt; pd.DataFrame:\n    \"\"\"\n    Loads a specified WandB artifact as a DataFrame if it's a dataset, \n    and optionally deletes the downloaded artifacts folder after loading.\n\n    Parameters:\n    - entity (str): Your WandB username or team name.\n    - project (str): The WandB project name.\n    - artifact_name (str): The name of the artifact to download.\n    - version (str): The version of the artifact to download (default is 'latest').\n    - download_dir (str): The local directory to save the downloaded artifact (default is 'artifacts').\n    - download (bool): Whether to store a copy of the artifact on local disk\n\n    Returns:\n    - pd.DataFrame: Loaded dataset as a DataFrame if applicable.\n    \"\"\"\n    # Initialize WandB API\n    api = wandb.Api()\n\n    # Fetch the artifact\n    artifact = api.artifact(f\"{entity}/{project}/{artifact_name}:{version}\")\n\n    # Download the artifact to the specified directory\n    artifact_dir = artifact.download(download_dir)\n\n    # Check if there is a CSV or similar dataset file and load it\n    if dataset:\n        df = None\n        for file in os.listdir(artifact_dir):\n            file_path = os.path.join(artifact_dir, file)\n            if file.endswith('.csv'):\n                df = pd.read_csv(file_path)\n                break\n            elif file.endswith('.xlsx'):\n                df = pd.read_excel(file_path)\n                break\n\n    # Optionally delete the artifact directory after loading\n    if download:\n        print(file_path)\n    else:\n        shutil.rmtree(download_dir)\n\n    return df",
+    "crumbs": [
+      "2.Wandb",
+      "load_wandb_artifact"
+    ]
+  }
+]
