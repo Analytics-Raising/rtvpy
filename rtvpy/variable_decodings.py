@@ -12,11 +12,11 @@ def get_column_groups() -> dict:
     """Define and return column groups as a dictionary"""
     return {
         'demographic': [
-            'year', 'hhh_sex', 'hhh_age', 'pre_cohort', 'pre_hhid', 'pre_village',
+            'year', 'hhh_sex', 'hhh_age', 'pre_cohort', 'pre_hhid', 'pre_name', 'pre_village',
             'pre_cluster', 'pre_parish', 'pre_subcounty', 'pre_district',
             'region', 'pre_district', 'GPS-Latitude', 'GPS-Longitude',
             'hhh_marital_status', 'hhh_religion', 'hhh_educ_level',
-            'hhh_read_write', 'leadership_head', 'tot_hhmembers',
+            'hhh_read_write', 'leadership_head', 'tot_hhmembers', 'Quartile',
         ],
         'ppi': [
             'house_rooms', 'Tenure_status_of_the_household', 'Material_walls',
@@ -105,6 +105,19 @@ def get_column_groups() -> dict:
             'Season_2_97',
             'season_2_cropping_mthd',
             'season_2_intercrop_crops',
+            # quantities
+            'sn_1_Ground_Nuts_planted',
+            'Food_Banana_Qty_Planted',
+            'Coffee_Qty_Planted',
+            'sn_1_Maize_planted',
+            'sn_1_Sweet_Potatoes_planted',
+            'sn_1_Cassava_planted',
+            'sn_1_beans_planted',
+            'sn_2_Ground_Nuts_planted',
+            'sn_2_Maize_planted',
+            'sn_2_Sweet_Potatoes_planted',
+            'sn_2_Cassava_planted',
+            'sn_2_beans_planted',
         ],
         'perennial_cropping': ['perennial_cropping', 'perennial_crops_grown'],
         'employment': ['work_salaried', 'work_casual'],
@@ -371,6 +384,7 @@ save_mode_codes = {
 all_variable_names = [
     # demographic
     'year',
+    'pre_name',
     'hhh_age',
     'hhh_sex',
     'pre_cohort',
@@ -390,6 +404,7 @@ all_variable_names = [
     'hhh_read_write',
     'leadership_head',
     'tot_hhmembers',
+    'Quartile',
 
     # ppi
     'house_rooms',
@@ -443,6 +458,7 @@ all_variable_names = [
     'milk_days',
     'pulses_week',
     'pulses_days',
+
 
     # spending in the last 30 days
     'expenditure_Fuel_lighting',
@@ -516,6 +532,19 @@ all_variable_names = [
     'Season_2_97',
     'season_2_cropping_mthd',
     'season_2_intercrop_crops',
+    # quantities
+    'sn_1_Ground_Nuts_planted',
+    'Food_Banana_Qty_Planted',
+    'Coffee_Qty_Planted',
+    'sn_1_Maize_planted',
+    'sn_1_Sweet_Potatoes_planted',
+    'sn_1_Cassava_planted',
+    'sn_1_beans_planted',
+    'sn_2_Ground_Nuts_planted',
+    'sn_2_Maize_planted',
+    'sn_2_Sweet_Potatoes_planted',
+    'sn_2_Cassava_planted',
+    'sn_2_beans_planted',
 
     # Perennial Cropping
     'perennial_cropping',
