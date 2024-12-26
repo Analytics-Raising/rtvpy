@@ -5,5 +5,6 @@ from .handle_missingness import *
 from .manipulate import *
 from .variable_decodings import *
 from .wandb_manager import *
+from .modeling import *
 
 

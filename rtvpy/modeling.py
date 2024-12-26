@@ -16,6 +16,3 @@ def saveModel(model, base_filename='model.joblib'):
     
     dump(model, filename)
     print(f"Model saved as: {filename}")
-
-# Save the model
-save_model(best_model)
